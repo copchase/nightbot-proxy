@@ -5,6 +5,9 @@ import json
 from logzero import logger
 
 def lambda_handler(event: dict, context) -> dict:
+    if "warmup" in event:
+        return
+
     env = os.environ.get("ENV", "stage")
     operation = event["queryStringParameters"].get("operation")
 
